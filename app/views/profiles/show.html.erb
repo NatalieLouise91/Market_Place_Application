@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4"><%= @profile.institution_name %></h1>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="row">
+      <div class="col">
+        <p>
+          <%= image_tag @profile.picture %>
+        </p>
+      </div>
+      <div class="col">
+        2 of 2
+      </div>
+  </div>
+  
+  <div class="row">
+    <div class="col">
+      <p>
+        <strong>Description:</strong>
+        <%= @profile.description %>
+      </p>
+    </div>
+    <div class="col">
+      2 of 2
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <p>
+        <strong>Lending policy:</strong>
+        <%= @profile.lending_policy %>
+      </p>
+    </div>
+    <div class="col">
+      2 of 2
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <p>
+        <strong>User:</strong>
+        <%= @profile.user.email %>
+      </p>
+    </div>
+    <div class="col">
+      2 of 2
+    </div>
+  </div>
+  
+</div>
+
+<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<%= link_to 'Back', profiles_path %>
