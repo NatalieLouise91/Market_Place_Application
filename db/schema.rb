@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_27_003805) do
+ActiveRecord::Schema.define(version: 2021_07_27_050313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,57 @@ ActiveRecord::Schema.define(version: 2021_07_27_003805) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "artefacts", force: :cascade do |t|
+    t.string "name"
+    t.string "artist"
+    t.string "date"
+    t.text "description"
+    t.string "dimensions"
+    t.float "price"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_artefacts_on_user_id"
+  end
+
+  create_table "borrowers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "material"
+    t.string "condition"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "loan_orders", force: :cascade do |t|
+    t.bigint "borrower_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["borrower_id"], name: "index_loan_orders_on_borrower_id"
+  end
+
+  create_table "loaners", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "street"
+    t.string "state"
+    t.integer "postcode"
+    t.string "country"
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["profile_id"], name: "index_locations_on_profile_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string "institution_name"
     t.text "description"
@@ -59,5 +110,8 @@ ActiveRecord::Schema.define(version: 2021_07_27_003805) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "artefacts", "users"
+  add_foreign_key "loan_orders", "borrowers"
+  add_foreign_key "locations", "profiles"
   add_foreign_key "profiles", "users"
 end
