@@ -3,13 +3,27 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :institution_name %>
-    <%= f.input :description %>
-    <%= f.input :lending_policy %>
-    <%= f.file_field :picture %>
+    <div class="form-inputs">
+      <%= f.input :institution_name %>
+      <%= f.input :description %>
+      <%= f.input :lending_policy %>
+      <%= f.file_field :picture %>
+    </div>
+
+    <p>Please provide information on your location</p>
+    
+    <div>
+      <%= f.simple_fields_for :location do |p| %>
+      <%= p.input :street %>
+      <%= p.input :state %>
+      <%= p.input :postcode %>
+      <%= p.input :location %>
+    </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
+
+  <% end %>
+
 <% end %>

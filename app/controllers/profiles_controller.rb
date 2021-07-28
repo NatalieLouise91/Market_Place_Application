@@ -14,6 +14,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/new
   def new
     @profile = Profile.new
+    @profile.build_location
   end
 
   # GET /profiles/1/edit
@@ -65,6 +66,6 @@ class ProfilesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def profile_params
-      params.require(:profile).permit(:institution_name, :description, :lending_policy, :user_id, :picture)
+      params.require(:profile).permit(:institution_name, :description, :lending_policy, :user_id, :picture, location_attributes: [:street, :state, :postcode, :location, :profile_id] )
     end
 end

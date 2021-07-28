@@ -10,6 +10,7 @@
     <%= f.input :description %>
     <%= f.input :dimensions %>
     <%= f.input :price %>
+    <%= f.association :loaner %>
     <p>Please attach an image</p>
     <%= f.file_field :picture %>
   </div>

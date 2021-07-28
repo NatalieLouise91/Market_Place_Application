@@ -14,7 +14,7 @@ class ArtefactsController < ApplicationController
   # GET /artefacts/new
   def new
     @artefact = Artefact.new
-    @artefact.category.build
+    @artefact.build_category
   end
 
   # GET /artefacts/1/edit
