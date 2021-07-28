@@ -1,0 +1,31 @@
+
+<%= simple_form_for(@artefact) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :artist %>
+    <%= f.input :date %>
+    <%= f.input :description %>
+    <%= f.input :dimensions %>
+    <%= f.input :price %>
+    <p>Please attach an image</p>
+    <%= f.file_field :picture %>
+  </div>
+  <br><br>
+  <h4> Please provide information on the materials & condition of the artefact</h4>
+  <p><strong>NOTE</strong> This will allow perspective loanees to assess whether they have the correct environmental and security conditions. </p>
+
+  <%= f.simple_fields_for :category do |p| %>
+    <%= p.input :material %>
+    <%= p.input :condition %>
+    <%= p.input :description %>
+    <p>Please supply any supporting documentation such as condition reports, significance reports etc.</p>
+    <%= f.file_field :document %>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+<% end %>

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  resources :artefacts
   resources :profiles
   devise_for :users
+  
   # main page
   root 'home#page'
 
