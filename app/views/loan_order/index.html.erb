@@ -1,0 +1,23 @@
+<h1>Loans</h1>
+
+<div class="container">
+    <div class="row">
+
+    <% @loan_orders.each do |loan_order| %>
+      <br>
+          <div class="col-sm">
+          <h3>Order Number</h3>
+            <p><strong><%= loan_order.id %></strong></p>
+          <h3>Loaned Artefact</h3>
+            <p><%= loan_order.artefact.name %></p>
+          <h3>Price of Loan</h3>
+            <p><%= loan_order.artefact.price %></p>
+          <h3>Museum contact</h3>
+            <p><%= loan_order.borrower.name %></p>
+            <p><%= loan_order.borrower.phone %></p>
+          </div>
+      <br>
+    <% end %>
+      </div>
+  </div>
+<br><br><br>

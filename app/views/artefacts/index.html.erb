@@ -2,38 +2,24 @@
 
 <h1>Artefacts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Artist</th>
-      <th>Date</th>
-      <th>Description</th>
-      <th>Dimensions</th>
-      <th>Price</th>
-      <th>Loaner</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="container">
+    <div class="row">
 
-  <tbody>
     <% @artefacts.each do |artefact| %>
-      <tr>
-        <td><%= artefact.name %></td>
-        <td><%= artefact.artist %></td>
-        <td><%= artefact.date %></td>
-        <td><%= artefact.description %></td>
-        <td><%= artefact.dimensions %></td>
-        <td><%= artefact.price %></td>
-        <td><%= artefact.loaner_id %></td>
-        <td><%= link_to 'Show', artefact %></td>
-        <td><%= link_to 'Edit', edit_artefact_path(artefact) %></td>
-        <td><%= link_to 'Destroy', artefact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <br>
+          <div class="col-sm">
+            <%= link_to image_tag(artefact.picture, class: "artefact-picture"), artefact %> 
+            <br>
+            <strong><%= artefact.name %></strong>
+            <i><%= artefact.artist %></i>
+            <i><%= artefact.date %></i>
+            <i><%= artefact.loaner.name %></i>
+            <strong><%= artefact.price %></strong>
+          </div>
+      <br>
     <% end %>
-  </tbody>
-</table>
-
-<br>
+      </div>
+  </div>
+<br><br><br>
 
 <%= link_to 'New Artefact', new_artefact_path %>

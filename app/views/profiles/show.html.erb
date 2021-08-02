@@ -17,6 +17,9 @@
       </div>
       <div class="col">
       <h2>Artefacts Available for Loan</h2>
+      <% @profile.loaner.artefacts.each do |artefact| %>
+      <%= link_to image_tag(artefact.picture, class: "profile-artefact-pictures"), artefact %>
+      <% end %>
       </div>
   </div>
   
@@ -44,7 +47,8 @@
         <%= @profile.location.street %>,
         <%= @profile.location.state %>,
         <%= @profile.location.postcode %>,
-        <%= @profile.location.location %>
+        <%= @profile.location.location %>,
+        <%= @profile.loaner.name %>
       </p>
     </div>
     <div class="col">

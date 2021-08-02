@@ -2,7 +2,7 @@
 
 <h1>Profiles</h1>
 
-<table>
+<table class = "table">
   <thead>
     <tr>
       <th>Institution name</th>
@@ -20,9 +20,13 @@
         <td><%= profile.description %></td>
         <td><%= profile.lending_policy %></td>
         <td><%= profile.user_id %></td>
-        <td><%= link_to 'Show', profile %></td>
-        <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
-        <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user == profile.user %>
+          <td><%= link_to 'Show', profile %></td>
+          <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+          <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+          <td><%= link_to 'Show', profile %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

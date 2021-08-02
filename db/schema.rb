@@ -53,10 +53,11 @@ ActiveRecord::Schema.define(version: 2021_07_27_211735) do
 
   create_table "borrowers", force: :cascade do |t|
     t.string "name"
-    t.bigint "user_id", null: false
+    t.string "phone"
+    t.bigint "profile_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_borrowers_on_user_id"
+    t.index ["profile_id"], name: "index_borrowers_on_profile_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -76,10 +77,11 @@ ActiveRecord::Schema.define(version: 2021_07_27_211735) do
 
   create_table "loaners", force: :cascade do |t|
     t.string "name"
-    t.bigint "user_id", null: false
+    t.string "phone"
+    t.bigint "profile_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_loaners_on_user_id"
+    t.index ["profile_id"], name: "index_loaners_on_profile_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -118,9 +120,9 @@ ActiveRecord::Schema.define(version: 2021_07_27_211735) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "artefacts", "categories"
   add_foreign_key "artefacts", "loaners"
-  add_foreign_key "borrowers", "users"
+  add_foreign_key "borrowers", "profiles"
   add_foreign_key "loan_orders", "borrowers"
-  add_foreign_key "loaners", "users"
+  add_foreign_key "loaners", "profiles"
   add_foreign_key "locations", "profiles"
   add_foreign_key "profiles", "users"
 end

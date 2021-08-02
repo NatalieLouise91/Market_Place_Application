@@ -2,7 +2,8 @@ class CreateBorrowers < ActiveRecord::Migration[6.0]
   def change
     create_table :borrowers do |t|
       t.string :name
-      t.references :user, null: false, foreign_key: true
+      t.string :phone
+      t.references :profile, null: false, foreign_key: true
 
       t.timestamps
     end

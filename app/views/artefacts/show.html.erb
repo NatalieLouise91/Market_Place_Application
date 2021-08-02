@@ -1,39 +1,57 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @artefact.name %>
-</p>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4"><%= @artefact.name %></h1>
+  </div>
+</div>
+    <div class="jumbotron">
+    <div class="row">
 
-<p>
-  <strong>Artist:</strong>
-  <%= @artefact.artist %>
-</p>
+        <div class="col-md-6">
+            <%= image_tag @artefact.picture, class: "artefact-picture" %>
+        </div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @artefact.date %>
-</p>
+        <div class="col-md-6">
+            <h3 class="display-4">Artefact Information</h3>
+              <p><%= @artefact.description %></p>
+            <h3>Museum Contact</h3>
+              <p><%= @artefact.loaner.name %></p>
+            <h3>Price</h3>
+              <p><%= @artefact.price %></p>
+            <hr class="my-4">
+            <p class="lead">
+                <button data-stripe='payment' class="btn btn-primary btn-lg">Loan</button>
+            </p>
+        </div>
+        <div>
+            <p><i><strong><%= @artefact.name %></strong>,  <%= @artefact.artist %>,  <%= @artefact.date %></i></p>
+            <p><strong><%= @artefact.loaner.profile.institution_name %></strong></p>
+            <p><i><%= @artefact.category.material %>, <%= @artefact.dimensions %></i></p>
+        </div>
+    </div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @artefact.description %>
-</p>
-
-<p>
-  <strong>Dimensions:</strong>
-  <%= @artefact.dimensions %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @artefact.price %>
-</p>
-
-<p>
-  <strong>Loaner:</strong>
-  <%= @artefact.loaner_id %>
-</p>
-
+<% if current_user.profile.loaner.id == @artefact.loaner.id %>
 <%= link_to 'Edit', edit_artefact_path(@artefact) %> |
+<%= link_to 'Delete', @artefact, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', artefacts_path %>
+<% else %>
+<%= link_to 'Back', artefacts_path %>
+<% end %>
+
+
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  document
+  .querySelector("[data-stripe='payment']")
+  .addEventListener("click", () => {
+    const stripe = Stripe(
+    "<%= Rails.application.credentials.dig(:stripe, :public) %>" 
+    )
+    stripe.redirectToCheckout({ 
+      sessionId: "<%= @session_id %>"
+     })
+  })
+</script>

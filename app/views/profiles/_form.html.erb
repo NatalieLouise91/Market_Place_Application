@@ -10,20 +10,35 @@
       <%= f.file_field :picture %>
     </div>
 
-    <p>Please provide information on your location</p>
-    
-    <div>
-      <%= f.simple_fields_for :location do |p| %>
-      <%= p.input :street %>
-      <%= p.input :state %>
-      <%= p.input :postcode %>
-      <%= p.input :location %>
-    </div>
+      <p>Please provide information on your location</p>
+      
+      <div>
+        <%= f.simple_fields_for :location do |p| %>
+        <%= p.input :street %>
+        <%= p.input :state %>
+        <%= p.input :postcode %>
+        <%= p.input :location %>
+      </div>
 
+        <div>
+          <p>Contact for outbound loans</p>
+          <%= f.simple_fields_for :loaner do |p| %>
+          <%= p.input :name %>
+          <%= p.input :phone %>
+        </div>
+    
+          <div>
+            <p>Contact for inbound loans</p>
+            <%= f.simple_fields_for :borrower do |p| %>
+            <%= p.input :name %>
+            <%= p.input :phone %>
+          </div>
+    
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
 
+      <% end %>
+    <% end %>
   <% end %>
-
 <% end %>

@@ -1,5 +1,6 @@
 class ArtefactsController < ApplicationController
   before_action :set_artefact, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
 
 
   # GET /artefacts or /artefacts.json
@@ -9,6 +10,37 @@ class ArtefactsController < ApplicationController
 
   # GET /artefacts/1 or /artefacts/1.json
   def show
+    stripe_session = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      client_reference_id: current_user ? current_user.id : nil,
+      customer_email: current_user ? current_user.email : nil,
+
+      line_items: [{ 
+        price_data: {
+          unit_amount: @artefact.price.to_i * 100,
+          currency: 'aud',
+          product_data: { 
+            name: @artefact.name,
+            description: @artefact.description
+          },
+        },
+        quantity: 1
+      }],
+
+      payment_intent_data: {
+        metadata: {
+          artefact_id: @artefact.id,
+          borrower_id: current_user ? current_user.profile.borrower.id : nil,
+          loaner_id: current_user ? @artefact.loaner.id : nil
+        },
+      },
+      mode: 'payment',
+      success_url: "#{root_url}loan_order/success",
+      cancel_url: "#{root_url}artefacts"
+    )
+
+    @session_id = stripe_session.id
+    pp stripe_session
   end
 
   # GET /artefacts/new
@@ -24,7 +56,7 @@ class ArtefactsController < ApplicationController
   # POST /artefacts or /artefacts.json
   def create
     @artefact = Artefact.new(artefact_params)
-    @artefact.loaner_id = current_user.id
+    @artefact.loaner_id = current_user.profile.loaner.id
     respond_to do |format|
       if @artefact.save
         format.html { redirect_to @artefact, notice: "Artefact was successfully created." }
