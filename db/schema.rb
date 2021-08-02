@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_27_211735) do
+ActiveRecord::Schema.define(version: 2021_08_02_050909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,10 +69,16 @@ ActiveRecord::Schema.define(version: 2021_07_27_211735) do
   end
 
   create_table "loan_orders", force: :cascade do |t|
+    t.bigint "loaner_id", null: false
     t.bigint "borrower_id", null: false
+    t.bigint "artefact_id", null: false
+    t.string "stripe_payment_id"
+    t.string "receipt_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["artefact_id"], name: "index_loan_orders_on_artefact_id"
     t.index ["borrower_id"], name: "index_loan_orders_on_borrower_id"
+    t.index ["loaner_id"], name: "index_loan_orders_on_loaner_id"
   end
 
   create_table "loaners", force: :cascade do |t|
@@ -121,7 +127,9 @@ ActiveRecord::Schema.define(version: 2021_07_27_211735) do
   add_foreign_key "artefacts", "categories"
   add_foreign_key "artefacts", "loaners"
   add_foreign_key "borrowers", "profiles"
+  add_foreign_key "loan_orders", "artefacts"
   add_foreign_key "loan_orders", "borrowers"
+  add_foreign_key "loan_orders", "loaners"
   add_foreign_key "loaners", "profiles"
   add_foreign_key "locations", "profiles"
   add_foreign_key "profiles", "users"

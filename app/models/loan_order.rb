@@ -1,4 +1,5 @@
 class LoanOrder < ApplicationRecord
+  belongs_to :loaner
   belongs_to :borrower
-  has_many :artefacts
+  belongs_to :artefact
 end

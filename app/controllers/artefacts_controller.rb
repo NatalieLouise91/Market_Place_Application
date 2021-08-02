@@ -35,7 +35,7 @@ class ArtefactsController < ApplicationController
         },
       },
       mode: 'payment',
-      success_url: "#{root_url}loan_order/success",
+      success_url: "#{root_url}payments/success",
       cancel_url: "#{root_url}artefacts"
     )
 
