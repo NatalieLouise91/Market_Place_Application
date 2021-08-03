@@ -9,13 +9,14 @@ class PaymentsController < ApplicationController
     def webhook
       payment_intent_id = params[:data][:object][:payment_intent]
       payment = Stripe::PaymentIntent.retrieve(payment_intent_id)
-      artefact_id = payment.metadata.listing_id
-      borrower_id = payment.metadata.user_id
+      
+      artefact_id = payment.metadata.artefact_id
+      borrower_id = payment.metadata.borrower_id
+      loaner_id = payment.metadata.loaner_id
     
-
       receipt_url = payment.charges.data[0].receipt_url
 
-      LoanOrder.create(user_id: borrower_id, listing_id: artefact_id, payment_intent_id: payment_intent_id, receipt_url: receipt_url )
+      LoanOrder.create(borrower_id: borrower_id, loaner_id: loaner_id, artefact_id: artefact_id, payment_intent_id: payment_intent_id, receipt_url: receipt_url)
   
       p "Artefact_id" + artefact_id
       p "Borrower_id" + borrower_id

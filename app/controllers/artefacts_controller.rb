@@ -32,7 +32,7 @@ class ArtefactsController < ApplicationController
           artefact_id: @artefact.id,
           borrower_id: current_user ? current_user.profile.borrower.id : nil,
           loaner_id: current_user ? @artefact.loaner.id : nil
-        },
+        }
       },
       mode: 'payment',
       success_url: "#{root_url}payments/success",
