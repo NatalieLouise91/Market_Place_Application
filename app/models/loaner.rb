@@ -1,5 +1,4 @@
 class Loaner < ApplicationRecord
-  has_many :artefacts
-  has_many :borrowers
+  has_many :artefacts, dependent: :destroy, autosave: true
   belongs_to :profile
 end
