@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid" style = "background-color: #e0e0e0;" >
   <div class="container">
     <h1 class="display-4"><%= @profile.institution_name %></h1>
   </div>
@@ -70,5 +70,5 @@
   
 </div>
 
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+<%= link_to 'Edit', edit_profile_path(@profile), class: "btn btn-primary btn-lg", style: "background-color: #00838f;"%>
+<%= link_to 'Back', profiles_path, class: "btn btn-primary btn-lg", style: "background-color: #00838f;" %>
