@@ -2,7 +2,10 @@ class PaymentsController < ApplicationController
     skip_before_action :verify_authenticity_token, only: [:webhook] 
   
     # successfully made payment for loan
-    def success 
+    def success
+      artefact_id = params[:artefactId] 
+      @artefact = Artefact.find(artefact_id)
+      @purchase = LoanOrder.find_by_artefact_id(artefact_id)
     end 
   
     # set webhook method
@@ -17,10 +20,7 @@ class PaymentsController < ApplicationController
       receipt_url = payment.charges.data[0].receipt_url
 
       LoanOrder.create(borrower_id: borrower_id, loaner_id: loaner_id, artefact_id: artefact_id, payment_intent_id: payment_intent_id, receipt_url: receipt_url)
-  
-      p "Artefact_id" + artefact_id
-      p "Borrower_id" + borrower_id
-      p "Loaner_id" + loaner_id
-      render plain: "Success"
+
+      pp payment
     end
 end
