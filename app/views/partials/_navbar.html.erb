@@ -1,10 +1,11 @@
-<nav class= "navbar navbar-light" style="background-color: #2E2E2E;">
-  <ul class="nav justify-content-end">
+<nav>
+  <ul class="nav justify-content-end" style="background-color: #2E2E2E;">
       <%= link_to "Home", root_path, method: :get, class: "nav-link" %>
     <% if user_signed_in? %>
       <%= link_to "Account", current_user.profile, method: :get, class: "nav-link" %>
       <%= link_to "Profiles", profiles_path, method: :get, class: "nav-link" %>
       <%= link_to "Artefacts", artefacts_path, method: :get, class: "nav-link" %>
+      <%= link_to "Loans", loan_orders_path, method: :get, class: "nav-link" %>
       <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
     <% else %>
       <%= link_to "Log in", new_user_session_path, method: :get, class: "nav-link" %>

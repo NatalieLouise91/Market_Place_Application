@@ -22,7 +22,7 @@
         <td><%= loan_order.loaner.name %></td>
         <td><%= loan_order.borrower.profile.institution_name %></td>
         <td><%= loan_order.borrower.name %></td>
-        <td><%= link_to 'Show', loan_order %></td>
+        <td><button class = "btn btn-primary btn-sm", style= "background-color: #00838f;"><%= link_to 'Show', loan_order %></button></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'Back to Artefacts', artefacts_path %>
+<button class= "btn btn-primary btn-sm", style= "background-color: #00838f;"><%= link_to 'Back to Artefacts', artefacts_path %></button>
