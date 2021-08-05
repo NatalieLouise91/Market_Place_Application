@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Loan Orders</h1>
+
+<table class = "table">
+  <thead>
+    <tr>
+      <th>Artefact</th>
+      <th>Loaner</th>
+      <th>Loaner Contact</th>
+      <th>Borrower</th>
+      <th>Borrower Contact</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @loan_orders.each do |loan_order| %>
+      <tr>
+        <td><%= loan_order.artefact.name %></td>
+        <td><%= loan_order.loaner.profile.institution_name %></td>
+        <td><%= loan_order.loaner.name %></td>
+        <td><%= loan_order.borrower.profile.institution_name %></td>
+        <td><%= loan_order.borrower.name %></td>
+        <td><%= link_to 'Show', loan_order %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back to Artefacts', artefacts_path %>

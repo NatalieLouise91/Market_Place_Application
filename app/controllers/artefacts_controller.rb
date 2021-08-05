@@ -1,6 +1,6 @@
 class ArtefactsController < ApplicationController
   before_action :set_artefact, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: [:index, :show]
+  # before_action :authenticate_user!, except: [:index, :show]
 
 
   # GET /artefacts or /artefacts.json
@@ -8,8 +8,9 @@ class ArtefactsController < ApplicationController
     @artefacts = Artefact.all
   end
 
-  # GET /artefacts/1 or /artefacts/1.json
+  # Show Artefact and initialize a stripe session
   def show
+
     stripe_session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       client_reference_id: current_user ? current_user.id : nil,
@@ -41,6 +42,12 @@ class ArtefactsController < ApplicationController
 
     @session_id = stripe_session.id
     pp stripe_session
+
+    artefact_id = @artefact.id
+    borrower_id = current_user.profile.borrower.id
+    loaner_id = @artefact.loaner.id
+  
+    LoanOrder.create(borrower_id: borrower_id, loaner_id: loaner_id, artefact_id: artefact_id, stripe_payment_id: @session_id)
   end
 
   # GET /artefacts/new

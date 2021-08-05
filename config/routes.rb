@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :loan_orders
   resources :artefacts
   resources :profiles
   devise_for :users
@@ -14,10 +15,7 @@ Rails.application.routes.draw do
   # edit profile
   get 'profiles/:id/edit', to: 'profiles#edit'
   # show individual loan order
-  get 'loan_order/show'
-  # show index of loan orders
-  get 'loan_order/index'
-
+  
   # successful payments of loan orders
   get '/payments/success', to: "payments#success"
   # ultrahook to store metadata
