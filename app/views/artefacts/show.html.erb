@@ -1,16 +1,31 @@
 <p id="notice"><%= notice %></p>
 
+<%# Jumobtron heading, artefact name %>
+
 <div class="jumbotron jumbotron-fluid" style = "background-color: #e0e0e0;" >
   <div class="container">
     <h1 class="display-4"><%= @artefact.name %></h1>
   </div>
 </div>
+
+<%# Jumbotron grid layout %>
     <div class="jumbotron" style = "background-color: #e0e0e0;">
+
+    <%# first row %>
     <div class="row">
+
+    <%# first column %>
+
+    <%# artefact picture %>
 
         <div class="col-md-6">
             <%= image_tag @artefact.picture, class: "artefact-picture" %>
         </div>
+
+    <%# second column %>
+
+    <%# artefact information, including museum contact in charge of loans, artefact loan price and payment option if the artefact is not in the users collection %>
+    <%# Information surrounding the name, artist, date, materials, dimensions of artefact & the custodian institution%>
 
         <div class="col-md-6">
             <h3 class="display-4">Artefact Information</h3>
@@ -21,7 +36,12 @@
               <p><%= @artefact.price %></p>
             <hr class="my-4">
             <p class="lead">
+                <% if current_user.profile.loaner.id != @artefact.loaner.id %>
                 <button data-stripe='payment' class="btn btn-primary btn-lg" style= "background-color: #00838f;">Loan</button>
+                <% else %>
+                <p>This item is in your collection</p>
+                <% end %>
+
             </p>
         </div>
         <div>
@@ -31,16 +51,19 @@
         </div>
     </div>
 </div>
+<br>
 
+<%# options for the user to edit/delete if this artefact belongs to their profile otherwise other users have the option to go back to the index of artefacts%>
 <% if current_user.profile.loaner.id == @artefact.loaner.id %>
-<%= link_to 'Edit', edit_artefact_path(@artefact) %> |
-<%= link_to 'Delete', @artefact, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', artefacts_path %>
+  <%= link_to 'Update', edit_artefact_path(@artefact), class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %> |
+  <%= link_to 'Remove', @artefact, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %> |
+  <%= link_to 'Back', artefacts_path, method: :get, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>
 <% else %>
-<%= link_to 'Back', artefacts_path %>
+  <%= link_to 'Back', artefacts_path, method: :get, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>
 <% end %>
+<br>
 
-
+<%# Javascript implementation to redirect to stripe payment checkout %>
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>

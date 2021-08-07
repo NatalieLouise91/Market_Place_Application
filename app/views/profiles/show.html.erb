@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<%# main title, name of museum %>
 
 <div class="jumbotron jumbotron-fluid" style = "background-color: #e0e0e0;" >
   <div class="container">
@@ -7,68 +8,81 @@
   </div>
 </div>
 
-<div class="container">
+<%# Jumbotron Bootstrap Styling - Half Page Grid Layout %>
 
-  <div class="row">
-      <div class="col">
-        <p>
+<div class="jumbotron" style = "background-color: #e0e0e0;">
+
+<%# first row %>
+    <div class="row">
+
+    <%# first column %>
+
+    <%# Profile Picture %>
+
+        <div class="col-md-6">  
           <%= image_tag @profile.picture, class: "profile-picture" %>
-        </p>
-      </div>
-      <div class="col">
-      <h2>Artefacts Available for Loan</h2>
-      <% @profile.loaner.artefacts.each do |artefact| %>
-      <%= link_to image_tag(artefact.picture, class: "profile-artefact-pictures"), artefact %>
-      <% end %>
-      </div>
-  </div>
-  
-  <div class="row">
-    <div class="col">
-      <p>
-        <strong>Description:</strong>
-        <%= @profile.description %>
-      </p>
-    </div>
-    <div class="col">
-      2 of 2
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <p>
-        <strong>Lending policy:</strong>
-        <%= @profile.lending_policy %>
-      </p>
-      <p>
-        <strong>Location</strong>
+        </div>
         <br>
-        <%= @profile.location.street %>,
-        <%= @profile.location.state %>,
-        <%= @profile.location.postcode %>,
-        <%= @profile.location.location %>,
-        <%= @profile.loaner.name %>
-      </p>
-    </div>
-    <div class="col">
-      2 of 2
-    </div>
-  </div>
+ 
+    <%# All artefacts available for loan from the current profile %>
 
-  <div class="row">
-    <div class="col">
-      <p>
-        <strong>User:</strong>
-        <%= @profile.user.email %>
-      </p>
+    <%# second column %>
+
+        <div class="col-md-6">
+          <h2>Artefacts Available for Loan</h2>
+          <% @profile.loaner.artefacts.each do |artefact| %>
+          <%= link_to image_tag(artefact.picture, class: "profile-artefact-pictures"), artefact %>
+          <% end %>
+        </div>
     </div>
-    <div class="col">
-      2 of 2
+
+<%# second row %>
+
+    <div class="row">
+
+    <%# first column %>
+    <%# museum description & whether there is a current lending policy %>
+      <div class="col-md-6">
+        <br>
+          <p>
+            <strong>Description:</strong>
+            <%= @profile.description %>
+          </p>
+          <p>
+            <strong>Lending policy:</strong>
+            <%= @profile.lending_policy %>
+          </p>
+      </div>
+
+      <%# second column %>
+      <%# physical location of museum %>
+
+      <div class="col-md-6">
+          <p>
+            <strong>Location</strong>
+            <br>
+            <%= @profile.location.street %>,
+            <%= @profile.location.state %>,
+            <%= @profile.location.postcode %>,
+            <%= @profile.location.location %>
+          </p>
+          <p>
+            <strong>Email:</strong>
+            <%= @profile.user.email %>
+          </p>
+          <p>
+            <strong>Outbound Loan Contact:</strong>
+            <%= @profile.loaner.name %>, ph:
+            <%= @profile.loaner.phone %>
+          </p>
+          <p>
+            <strong>Inbound Loan Contact:</strong>
+            <%= @profile.borrower.name %>, ph:
+            <%= @profile.borrower.phone %>
+          </p>
+      </div>
     </div>
-  </div>
-  
 </div>
 
-<button class= "btn btn-primary btn-sm", style= "background-color: #00838f;"><%= link_to 'Edit', edit_profile_path(@profile) %></button>
-<button class= "btn btn-primary btn-sm", style= "background-color: #00838f;"><%= link_to 'Back', profiles_path %></button>
+<%= link_to 'Edit', edit_profile_path(@profile), class: "btn btn-primary btn-lg", style: "background-color: #00838f;" %>
+<%= link_to 'Back', profiles_path, method: :get, class: "btn btn-primary btn-lg", style: "background-color: #00838f;" %>

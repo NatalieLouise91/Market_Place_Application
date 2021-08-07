@@ -1,6 +1,6 @@
 class ArtefactsController < ApplicationController
   before_action :set_artefact, only: %i[ show edit update destroy ]
-  # before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
 
 
   # GET /artefacts or /artefacts.json
@@ -42,12 +42,6 @@ class ArtefactsController < ApplicationController
 
     @session_id = stripe_session.id
     pp stripe_session
-
-    artefact_id = @artefact.id
-    borrower_id = current_user.profile.borrower.id
-    loaner_id = @artefact.loaner.id
-  
-    LoanOrder.create(borrower_id: borrower_id, loaner_id: loaner_id, artefact_id: artefact_id, stripe_payment_id: @session_id)
   end
 
   # GET /artefacts/new

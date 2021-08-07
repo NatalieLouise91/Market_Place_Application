@@ -10,11 +10,12 @@
           <div class="col-sm">
             <%= link_to image_tag(artefact.picture, class: "artefact-picture"), artefact %> 
             <br>
-            <strong><%= artefact.name %></strong>
-            <i><%= artefact.artist %></i>
-            <i><%= artefact.date %></i>
-            <i><%= artefact.loaner.profile.institution_name  %></i>
-            <strong><%= artefact.price %></strong>
+          </div>
+          <div class="col-sm">
+            <p><strong><%= artefact.name %></strong></p>
+            <p><i><%= artefact.artist %></i>,
+            <i><%= artefact.date %></i>,</p>
+            <p><i><%= artefact.loaner.profile.institution_name  %></i></p>
           </div>
       <br>
     <% end %>
@@ -22,4 +23,4 @@
   </div>
 <br><br><br>
 
-<button class = "btn btn-primary btn-sm", style= "background-color: #00838f;"><%= link_to 'New Artefact', new_artefact_path %></button>
+<%= link_to 'New Artefact', new_artefact_path, method: :get, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>

@@ -1,5 +1,9 @@
-<h1>New Artefact</h1>
+<h1>Create a New Artefact for Loan</h1>
+
+<%# rendering the form for creating a new artefact %>
 
 <%= render 'form', artefact: @artefact %>
 
-<button class = "btn btn-primary btn-sm", style= "background-color: #00838f;"><%= link_to 'Back', artefacts_path %></button>
+<%# option for user to go back to artefacts index %>
+
+<%= link_to 'Back', artefacts_path, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>

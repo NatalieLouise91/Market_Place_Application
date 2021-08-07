@@ -123,13 +123,13 @@ ActiveRecord::Schema.define(version: 2021_08_05_041900) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "artefacts", "categories"
-  add_foreign_key "artefacts", "loaners"
-  add_foreign_key "borrowers", "profiles"
-  add_foreign_key "loan_orders", "artefacts"
-  add_foreign_key "loan_orders", "borrowers"
-  add_foreign_key "loan_orders", "loaners"
-  add_foreign_key "loaners", "profiles"
-  add_foreign_key "locations", "profiles"
-  add_foreign_key "profiles", "users"
+  add_foreign_key "artefacts", "categories", on_delete: :cascade
+  add_foreign_key "artefacts", "loaners", on_delete: :cascade
+  add_foreign_key "borrowers", "profiles", on_delete: :cascade
+  add_foreign_key "loan_orders", "artefacts", on_delete: :cascade
+  add_foreign_key "loan_orders", "borrowers", on_delete: :cascade
+  add_foreign_key "loan_orders", "loaners", on_delete: :cascade
+  add_foreign_key "loaners", "profiles", on_delete: :cascade
+  add_foreign_key "locations", "profiles", on_delete: :cascade
+  add_foreign_key "profiles", "users", on_delete: :cascade
 end

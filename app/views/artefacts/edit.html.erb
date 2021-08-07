@@ -1,6 +1,10 @@
-<h1>Editing Artefact</h1>
+<h1>Update an Existing Artefact</h1>
+
+<%# render a form for editing an existing artefact %>
 
 <%= render 'form', artefact: @artefact %>
 
-<button class = "btn btn-primary btn-sm", style= "background-color: #00838f;"><%= link_to 'Show', @artefact %></button>
-<button class = "btn btn-primary btn-sm", style= "background-color: #00838f;"><%= link_to 'Back', artefacts_path %></button>
+<%# links to show the selected artefact and back to the index of artefacts %>
+
+<%= link_to 'Show', @artefact, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>
+<%= link_to 'Back', artefacts_path, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>
