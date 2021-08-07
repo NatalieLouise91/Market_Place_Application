@@ -4,6 +4,7 @@ class Loaner < ApplicationRecord
   has_many :loan_orders, dependent: :destroy, autosave: true
   before_create :remove_whitespace
   before_update :remove_whitespace
+  validates :name, :phone, presence: true
 
   # has many association with artefacts. When artefacts is updated/ deleted loaner is also affected
   # belongs to the profile entity

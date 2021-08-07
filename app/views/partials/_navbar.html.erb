@@ -1,7 +1,10 @@
 <nav>
   <ul class="nav justify-content-end" style="background-color: #2E2E2E;">
       <%= link_to "Home", root_path, method: :get, class: "nav-link" %>
-    <% if user_signed_in? %>
+    <% if user_signed_in? && current_user.profile == nil %>
+      <%= link_to "Profiles", profiles_path, method: :get, class: "nav-link" %>
+      <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+    <% elsif user_signed_in? && current_user.profile != nil %>
       <%= link_to "Account", current_user.profile, method: :get, class: "nav-link" %>
       <%= link_to "Profiles", profiles_path, method: :get, class: "nav-link" %>
       <%= link_to "Artefacts", artefacts_path, method: :get, class: "nav-link" %>

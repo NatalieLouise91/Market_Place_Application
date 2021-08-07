@@ -2,6 +2,7 @@ class Location < ApplicationRecord
   belongs_to :profile, dependent: :destroy, autosave: true
   before_create :remove_whitespace
   before_update :remove_whitespace
+  validates :street, :state, :postcode, :location, presence: true
 
   # belongs to assocation with profile, location is dependent on profile and will delete or update accordingly. 
   # before create and before update callbacks to remove whitespace

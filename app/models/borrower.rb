@@ -3,6 +3,7 @@ class Borrower < ApplicationRecord
   belongs_to :profile
   before_create :remove_whitespace
   before_update :remove_whitespace
+  validates :name, :phone, presence: true
 
   private
 

@@ -37,12 +37,12 @@ ActiveRecord::Schema.define(version: 2021_08_05_041900) do
   end
 
   create_table "artefacts", force: :cascade do |t|
-    t.string "name"
-    t.string "artist"
-    t.string "date"
-    t.text "description"
-    t.string "dimensions"
-    t.float "price"
+    t.string "name", null: false
+    t.string "artist", null: false
+    t.string "date", null: false
+    t.text "description", null: false
+    t.string "dimensions", null: false
+    t.float "price", null: false
     t.bigint "loaner_id", null: false
     t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 2021_08_05_041900) do
   end
 
   create_table "borrowers", force: :cascade do |t|
-    t.string "name"
-    t.string "phone"
+    t.string "name", null: false
+    t.string "phone", null: false
     t.bigint "profile_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -61,9 +61,9 @@ ActiveRecord::Schema.define(version: 2021_08_05_041900) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "material"
-    t.string "condition"
-    t.text "description"
+    t.string "material", null: false
+    t.string "condition", null: false
+    t.text "description", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(version: 2021_08_05_041900) do
   end
 
   create_table "loaners", force: :cascade do |t|
-    t.string "name"
-    t.string "phone"
+    t.string "name", null: false
+    t.string "phone", null: false
     t.bigint "profile_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -90,10 +90,10 @@ ActiveRecord::Schema.define(version: 2021_08_05_041900) do
   end
 
   create_table "locations", force: :cascade do |t|
-    t.string "street"
-    t.string "state"
-    t.string "postcode"
-    t.string "location"
+    t.string "street", null: false
+    t.string "state", null: false
+    t.string "postcode", null: false
+    t.string "location", null: false
     t.bigint "profile_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -101,8 +101,8 @@ ActiveRecord::Schema.define(version: 2021_08_05_041900) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.string "institution_name"
-    t.text "description"
+    t.string "institution_name", null: false
+    t.text "description", null: false
     t.boolean "lending_policy"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -123,13 +123,13 @@ ActiveRecord::Schema.define(version: 2021_08_05_041900) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "artefacts", "categories", on_delete: :cascade
-  add_foreign_key "artefacts", "loaners", on_delete: :cascade
-  add_foreign_key "borrowers", "profiles", on_delete: :cascade
-  add_foreign_key "loan_orders", "artefacts", on_delete: :cascade
-  add_foreign_key "loan_orders", "borrowers", on_delete: :cascade
-  add_foreign_key "loan_orders", "loaners", on_delete: :cascade
-  add_foreign_key "loaners", "profiles", on_delete: :cascade
-  add_foreign_key "locations", "profiles", on_delete: :cascade
-  add_foreign_key "profiles", "users", on_delete: :cascade
+  add_foreign_key "artefacts", "categories"
+  add_foreign_key "artefacts", "loaners"
+  add_foreign_key "borrowers", "profiles"
+  add_foreign_key "loan_orders", "artefacts"
+  add_foreign_key "loan_orders", "borrowers"
+  add_foreign_key "loan_orders", "loaners"
+  add_foreign_key "loaners", "profiles"
+  add_foreign_key "locations", "profiles"
+  add_foreign_key "profiles", "users"
 end

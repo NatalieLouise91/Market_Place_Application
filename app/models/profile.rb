@@ -9,6 +9,8 @@ class Profile < ApplicationRecord
   accepts_nested_attributes_for :borrower
   before_create :remove_whitespace
   before_update :remove_whitespace
+  validates :institution_name, :description, presence: true
+  validates :institution_name, uniqueness: true
 
   # profile belongs to the user and has one attached profile image.
   # profile has associations with the location, borrower and loaner entities, all are dependent the profile entity and will delete and update accordingly.

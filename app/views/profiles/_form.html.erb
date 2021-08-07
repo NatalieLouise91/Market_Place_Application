@@ -4,34 +4,38 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
     <div class="form-inputs">
-      <%= f.input :institution_name %>
-      <%= f.input :description %>
+      <%= f.input :institution_name, required: true %>
+      <%= f.input :description, required: true %>
       <%= f.input :lending_policy %>
-      <%= f.file_field :picture %>
+      
+      <p>Upload of photo for your profile</p>
+      <br>
+      <%= f.file_field :picture, required: true %>
+      <br>
     </div>
       <br>
       <p>Please provide information on your location</p>
       
       <div>
         <%= f.simple_fields_for :location do |p| %>
-        <%= p.input :street %>
-        <%= p.input :state %>
-        <%= p.input :postcode %>
-        <%= p.input :location %>
+        <%= p.input :street, required: true %>
+        <%= p.input :state, required: true %>
+        <%= p.input :postcode, required: true%>
+        <%= p.input :location, required: true %>
       </div>
 
         <div>
           <p>Contact for outbound loans:<p>
           <%= f.simple_fields_for :loaner do |p| %>
-          <%= p.input :name %>
-          <%= p.input :phone %>
+          <%= p.input :name, required: true %>
+          <%= p.input :phone, required: true %>
         </div>
     
           <div>
             <p>Contact for inbound loans:</p>
             <%= f.simple_fields_for :borrower do |p| %>
-            <%= p.input :name %>
-            <%= p.input :phone %>
+            <%= p.input :name, required: true%>
+            <%= p.input :phone, required: true %>
           </div>
     
   <div class="form-actions">
