@@ -70,6 +70,6 @@ class ProfilesController < ApplicationController
 
     # Profile params required for the profile entity including attributes for location, loaner and borrower entities
     def profile_params
-      params.require(:profile).permit(:institution_name, :description, :lending_policy, :user_id, :picture, location_attributes: [:street, :state, :postcode, :location, :profile_id], loaner_attributes: [:name, :phone], borrower_attributes: [:name, :phone])
+      params.require(:profile).permit(:institution_name, :description, :lending_policy, :user_id, :picture, location_attributes: [:id, :street, :state, :postcode, :location, :profile_id], loaner_attributes: [:id, :name, :phone], borrower_attributes: [:id, :name, :phone])
     end
 end

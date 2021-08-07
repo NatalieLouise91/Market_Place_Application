@@ -6,7 +6,7 @@ class Artefact < ApplicationRecord
   has_one :loan_order, dependent: :destroy
   before_create :remove_whitespace
   before_update :remove_whitespace
-  validates :name, :artist, :date, :description, :dimensions, presence: true
+  validates :name, :artist, :date, :description, :dimensions, :price, presence: true
 
   # an artefact belongs to a loaner and a category. Each artefact belongs to a loan order. 
   # before create and before update callbacks used on the new artefact forms and edit artefact form

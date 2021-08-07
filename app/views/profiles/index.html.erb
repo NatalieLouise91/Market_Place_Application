@@ -9,8 +9,8 @@
       <tr>
         <th>Institution name</th>
         <th>Description</th>
-        <th>Museum Contact</th>
-        <th>User</th>
+        <th>Location</th>
+        <th>Loan Contact</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -20,8 +20,8 @@
         <tr>
           <td><%= profile.institution_name %></td>
           <td><%= profile.description %></td>
+          <td><%= profile.location.location %></td>
           <td><%= profile.loaner.name %></td>
-          <td><%= profile.user.email %></td>
           <% if current_user == profile.user %>
             <td><%= link_to 'Show', profile, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %></td>
             <td><%= link_to 'Update', edit_profile_path(profile), class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %></td>
