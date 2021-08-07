@@ -2,13 +2,14 @@ class ArtefactsController < ApplicationController
   before_action :set_artefact, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
 
+  # ^^^ before action callback to set the artefact and authenticate the user to allow stripe payment process ^^^
 
-  # GET /artefacts or /artefacts.json
+  # Show all artefacts in an index page 
   def index
-    @artefacts = Artefact.all
+    @artefacts = Artefact.order(name: :asc).preload(:loaner)
   end
 
-  # Show Artefact and initialize a stripe session
+  # Show individual artefact and initialize a stripe session. Setting line items for payment checkout, quantity to be sold, grabbing payment intent metadata for Loan_Order Creation, and diverting to either cancel/success url.
   def show
 
     stripe_session = Stripe::Checkout::Session.create(
@@ -44,17 +45,17 @@ class ArtefactsController < ApplicationController
     pp stripe_session
   end
 
-  # GET /artefacts/new
+  # Method to create a new artefact and also building a new category attached to that artefact
   def new
     @artefact = Artefact.new
     @artefact.build_category
   end
 
-  # GET /artefacts/1/edit
+  # Method to edit existing artefact
   def edit
   end
 
-  # POST /artefacts or /artefacts.json
+  # Method to create a new artefact through grabbing artefact params and connecting the current user loaner id with the artefact
   def create
     @artefact = Artefact.new(artefact_params)
     @artefact.loaner_id = current_user.profile.loaner.id
@@ -69,7 +70,7 @@ class ArtefactsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /artefacts/1 or /artefacts/1.json
+  # Updating artefact and associated foreign keys, category
   def update
     respond_to do |format|
       if @artefact.update(artefact_params)
@@ -82,7 +83,7 @@ class ArtefactsController < ApplicationController
     end
   end
 
-  # DELETE /artefacts/1 or /artefacts/1.json
+  # Destroying artefact and associated foreign keys, category
   def destroy
     @artefact.destroy
     respond_to do |format|
@@ -92,12 +93,12 @@ class ArtefactsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # Method for before action callback to set artefact
     def set_artefact
       @artefact = Artefact.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # Required params for artefact including category attributes
     def artefact_params
       params.require(:artefact).permit(:name, :artist, :date, :description, :dimensions, :price, :loaner_id, :picture, category_attributes: [:material, :condition, :description, :document])
     end

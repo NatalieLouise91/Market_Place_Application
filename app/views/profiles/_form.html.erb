@@ -9,7 +9,7 @@
       <%= f.input :lending_policy %>
       <%= f.file_field :picture %>
     </div>
-
+      <br>
       <p>Please provide information on your location</p>
       
       <div>
@@ -21,21 +21,21 @@
       </div>
 
         <div>
-          <p>Contact for outbound loans</p>
+          <p>Contact for outbound loans:<p>
           <%= f.simple_fields_for :loaner do |p| %>
           <%= p.input :name %>
           <%= p.input :phone %>
         </div>
     
           <div>
-            <p>Contact for inbound loans</p>
+            <p>Contact for inbound loans:</p>
             <%= f.simple_fields_for :borrower do |p| %>
             <%= p.input :name %>
             <%= p.input :phone %>
           </div>
     
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn btn-primary btn-lg", style: "background-color: #00838f;" %>
   </div>
 
       <% end %>

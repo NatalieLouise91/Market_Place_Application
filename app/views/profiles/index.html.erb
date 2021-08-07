@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="jumbotron jumbotron-fluid" style = "background-color: #e0e0e0;" >
-  <h1>Profiles</h1>
+  <h1 class="display-4" style = "text-align: center;">Profiles within the MuseExchange Network</h1>
 </div>
 
   <table class = "table">
@@ -9,7 +9,7 @@
       <tr>
         <th>Institution name</th>
         <th>Description</th>
-        <th>Lending policy</th>
+        <th>Museum Contact</th>
         <th>User</th>
         <th colspan="3"></th>
       </tr>
@@ -20,14 +20,14 @@
         <tr>
           <td><%= profile.institution_name %></td>
           <td><%= profile.description %></td>
-          <td><%= profile.lending_policy %></td>
-          <td><%= profile.user_id %></td>
+          <td><%= profile.loaner.name %></td>
+          <td><%= profile.user.email %></td>
           <% if current_user == profile.user %>
             <td><%= link_to 'Show', profile, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %></td>
             <td><%= link_to 'Update', edit_profile_path(profile), class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %></td>
             <td><%= link_to 'Delete', profile, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %></td>
           <% else %>
-            <td><%= link_to 'Show', profile, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %></td>
+            <td><%= link_to 'Visit', profile, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %></td>
           <% end %>
         </tr>
       <% end %>

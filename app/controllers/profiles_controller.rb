@@ -1,17 +1,19 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[ show edit update destroy ]
 
-  # GET /profiles or /profiles.json
+  # ^^^ before action callback to set the profile ^^^
+
+  # Show all profiles in an index 
   def index
-    @profiles = Profile.all
+    @profiles = Profile.order(institution_name: :asc).preload(:loaner, :borrower, :location)
   end
 
-  # GET /profiles/1 or /profiles/1.json
+  # Show individual profiles through identifying their id
   def show
     @profile = Profile.find(params[:id])
   end
 
-  # GET /profiles/new
+  # Method to create a new profile. This includes building a new location, loaner and borrower, which are linked to profile entity
   def new
     @profile = Profile.new
     @profile.build_location
@@ -19,11 +21,11 @@ class ProfilesController < ApplicationController
     @profile.build_borrower
   end
 
-  # GET /profiles/1/edit
+  # Method to edit a profile
   def edit
   end
 
-  # POST /profiles or /profiles.json
+  # Method to create a profile
   def create
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
@@ -38,7 +40,7 @@ class ProfilesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /profiles/1 or /profiles/1.json
+  # Method to update a profile
   def update
     respond_to do |format|
       if @profile.update(profile_params)
@@ -51,7 +53,7 @@ class ProfilesController < ApplicationController
     end
   end
 
-  # DELETE /profiles/1 or /profiles/1.json
+  # Method to delete a profile
   def destroy
     @profile.destroy
     respond_to do |format|
@@ -66,7 +68,7 @@ class ProfilesController < ApplicationController
       @profile = Profile.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # Profile params required for the profile entity including attributes for location, loaner and borrower entities
     def profile_params
       params.require(:profile).permit(:institution_name, :description, :lending_policy, :user_id, :picture, location_attributes: [:street, :state, :postcode, :location, :profile_id], loaner_attributes: [:name, :phone], borrower_attributes: [:name, :phone])
     end

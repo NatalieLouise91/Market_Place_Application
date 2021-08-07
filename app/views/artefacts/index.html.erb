@@ -1,26 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Artefacts</h1>
-
-<div class="container">
-    <div class="row">
-
-    <% @artefacts.each do |artefact| %>
-      <br>
-          <div class="col-sm">
-            <%= link_to image_tag(artefact.picture, class: "artefact-picture"), artefact %> 
-            <br>
-          </div>
-          <div class="col-sm">
-            <p><strong><%= artefact.name %></strong></p>
-            <p><i><%= artefact.artist %></i>,
-            <i><%= artefact.date %></i>,</p>
-            <p><i><%= artefact.loaner.profile.institution_name  %></i></p>
-          </div>
-      <br>
-    <% end %>
-      </div>
+<div class="jumbotron jumbotron-fluid" style = "background-color: #e0e0e0;" >
+  <div class="container">
+    <h1 class="display-4" style = "text-align: center;">Artefacts in the MuseExchange Network</h1>
   </div>
+</div>
+
+<div class="jumbotron" style = "background-color: #e0e0e0; display: flex;">
+    <div class="row">
+        <% @artefacts.each do |artefact| %>
+          <br>
+              <div class="col-sm">
+                <%= link_to image_tag(artefact.picture, class: "artefact-picture"), artefact %> 
+                <br>
+                <p><strong><%= artefact.name %></strong></p>
+                <p><i><%= artefact.artist %></i>,
+                <i><%= artefact.date %></i>,</p>
+                <p><i><%= artefact.loaner.profile.institution_name  %></i></p>
+              </div>
+          <br>
+      <% end %>
+    </div>
+    <br><br>    
+</div>
 <br><br><br>
 
 <%= link_to 'New Artefact', new_artefact_path, method: :get, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>

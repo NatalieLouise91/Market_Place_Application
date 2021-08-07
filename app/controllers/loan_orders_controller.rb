@@ -1,16 +1,18 @@
 class LoanOrdersController < ApplicationController
   before_action :set_loan_order, only: %i[ show edit update destroy ]
 
-  # GET /loan_orders or /loan_orders.json
+  # ^^^ before action callback to set a loan order ^^^
+
+  # Method to show all loan orders on an index page
   def index
     @loan_orders = LoanOrder.all
   end
 
-  # GET /loan_orders/1 or /loan_orders/1.json
+  # Method to show individual loan order 
   def show
   end
 
-  # GET /loan_orders/new
+  # Method to initiate a new loan order
   def new
     @loan_order = LoanOrder.new
   end
@@ -19,7 +21,7 @@ class LoanOrdersController < ApplicationController
   def edit
   end
 
-  # POST /loan_orders or /loan_orders.json
+  # Method to create a new loan order with loan order params obtained through stripe session
   def create
     @loan_order = LoanOrder.new(loan_order_params)
 
@@ -62,7 +64,7 @@ class LoanOrdersController < ApplicationController
       @loan_order = LoanOrder.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # Required params for the creation of a new loan order
     def loan_order_params
       params.require(:loan_order).permit(:loaner_id, :borrower_id, :artefact_id, :stripe_payment_id)
     end
