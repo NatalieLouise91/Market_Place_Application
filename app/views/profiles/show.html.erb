@@ -20,18 +20,26 @@
     <%# Profile Picture %>
 
         <div class="col-md-6">  
-          <%= image_tag @profile.picture, class: "profile-picture" %>
+          <% if @profile.picture_attachment == nil %>
+            <%= image_tag "default-image.png", class: "default-image" %>
+          <% else %>
+            <%= image_tag @profile.picture, class: "profile-picture" %>
+          <% end %>
         </div>
         <br>
  
-    <%# All artefacts available for loan from the current profile %>
+     <%# All artefacts available for loan from the current profile %>
 
-    <%# second column %>
+     <%# second column %>
 
         <div class="col-md-6">
           <h2>Artefacts Available for Loan</h2>
           <% @profile.loaner.artefacts.each do |artefact| %>
-          <%= link_to image_tag(artefact.picture, class: "profile-artefact-pictures"), artefact %>
+                <% if artefact.picture_attachment == nil %>
+                  <%= link_to image_tag("default-image.png", class: "default-image"), artefact %>
+                <% else %>
+                  <%= link_to image_tag(artefact.picture, class: "artefact-picture"), artefact %> 
+                <% end %>
           <% end %>
         </div>
     </div>

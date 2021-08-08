@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_05_041900) do
+ActiveRecord::Schema.define(version: 2021_08_08_002340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,13 @@ ActiveRecord::Schema.define(version: 2021_08_05_041900) do
     t.index ["profile_id"], name: "index_locations_on_profile_id"
   end
 
+  create_table "profile_pictures", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["profile_id"], name: "index_profile_pictures_on_profile_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string "institution_name", null: false
     t.text "description", null: false
@@ -131,5 +138,6 @@ ActiveRecord::Schema.define(version: 2021_08_05_041900) do
   add_foreign_key "loan_orders", "loaners"
   add_foreign_key "loaners", "profiles"
   add_foreign_key "locations", "profiles"
+  add_foreign_key "profile_pictures", "profiles"
   add_foreign_key "profiles", "users"
 end
