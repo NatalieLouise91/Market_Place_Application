@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_041900) do
     t.bigint "borrower_id", null: false
     t.bigint "artefact_id", null: false
     t.string "stripe_payment_id"
+    t.string "receipt_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["artefact_id"], name: "index_loan_orders_on_artefact_id"

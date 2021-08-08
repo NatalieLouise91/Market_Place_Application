@@ -58,6 +58,8 @@
 </div>
 
 <%# options for the user to edit/delete if this artefact belongs to their profile otherwise other users have the option to go back to the index of artefacts%>
+<%# disabled buttons for when a item is already on loan. Preventing the user from removing or updating the item during the loan period %>
+
 <% if current_user.profile.loaner.id == @artefact.loaner.id && @artefact.loan_order == nil %>
   <%= link_to 'Update', edit_artefact_path(@artefact), class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %> |
   <%= link_to 'Remove', @artefact, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %> |

@@ -19,7 +19,7 @@ class PaymentsController < ApplicationController
     
       receipt_url = payment.charges.data[0].receipt_url
 
-      LoanOrder.create(borrower_id: borrower_id, loaner_id: loaner_id, artefact_id: artefact_id, stripe_payment_id: payment_intent_id)
+      LoanOrder.create(borrower_id: borrower_id, loaner_id: loaner_id, artefact_id: artefact_id, stripe_payment_id: payment_intent_id, receipt_url: receipt_url)
 
       print "Artefact Id #{artefact_id}"
 

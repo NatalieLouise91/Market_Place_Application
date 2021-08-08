@@ -1,2 +1,28 @@
-You've successfully made a payment!
-<%= link_to "Go to loan orders page", loan_orders_path %>
+
+<div class="jumbotron jumbotron-fluid" style = "background-color: #e0e0e0;" >
+  <div class="container">
+    <h1 class="display-4" style = "text-align: center;"> Successful Payment </h1>
+  </div>
+</div>
+
+<div class="jumbotron" style = "background-color: #e0e0e0;">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="lead" style = "text-align: center;"> Thank you for using the MuseExchange Network</p>
+            <hr class="my-4">
+            <p class="lead" style = "text-align: center;">You have successfully made a payment to loan <%= @artefact.name %></p>
+            <hr class="my-4">
+            <p class="lead" style = "text-align: center;">Your receipt can be downloaded from here:</p> 
+            <hr class="my-4">
+            <br><br>
+            <div style="display: flex; justify-content: center;">
+                <%= link_to "Payment Receipt", @purchase.receipt_url, target: :_blank, class: "btn btn-primary btn-sm", style: "background-color: #00838f; text-align: center;" %> 
+            </div>
+        </div>   
+    </div>
+</div>
+<br><br>
+
+<%= link_to 'Loan Orders Page', loan_orders_path, method: :get, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>
+
+<br><br><br><br>
