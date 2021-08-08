@@ -16,9 +16,9 @@
 
 @import "bootstrap";
 
-footer {
-    color: #ffffff;
-}
+// footer {
+//     color: #ffffff;
+// }
 
 a {
     color: #ffffff;
@@ -31,3 +31,14 @@ button {
 body {
     background-color: #eceff1;
 }
+
+footer {
+    width:100%;
+    color: #ffffff;
+    height: 3rem;
+    padding: 10px;
+    position: absolute;
+    bottom: 0; 
+    display: flex;
+    justify-content: flex-end; 
+  }

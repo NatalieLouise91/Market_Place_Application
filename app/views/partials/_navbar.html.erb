@@ -1,5 +1,5 @@
 <nav>
-  <ul class="nav justify-content-end" style="background-color: #2E2E2E;">
+  <ul class="nav justify-content-end" style="background-color: #2E2E2E; width: 100%;">
       <%= link_to "Home", root_path, method: :get, class: "nav-link" %>
     <% if user_signed_in? && current_user.profile == nil %>
       <%= link_to "Profiles", profiles_path, method: :get, class: "nav-link" %>
