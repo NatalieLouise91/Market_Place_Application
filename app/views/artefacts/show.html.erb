@@ -55,7 +55,6 @@
         </div>
     </div>
 </div>
-<br>
 
 <%# options for the user to edit/delete if this artefact belongs to their profile otherwise other users have the option to go back to the index of artefacts%>
 <% if current_user.profile.loaner.id == @artefact.loaner.id %>
@@ -65,7 +64,7 @@
 <% else %>
   <%= link_to 'Back', artefacts_path, method: :get, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>
 <% end %>
-<br>
+<br><br><br><br>
 
 <%# Javascript implementation to redirect to stripe payment checkout %>
 

@@ -93,9 +93,11 @@
     </div>
 </div>
 
+
 <% if current_user == @profile.user %>
-  <%= link_to 'Edit', edit_profile_path(@profile), class: "btn btn-primary btn-lg", style: "background-color: #00838f;" %>
-  <%= link_to 'Back', profiles_path, method: :get, class: "btn btn-primary btn-lg", style: "background-color: #00838f;" %>
+  <%= link_to 'Edit', edit_profile_path(@profile), class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>
+  <%= link_to 'Back', profiles_path, method: :get, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>
 <% else %>
-  <%= link_to 'Back', profiles_path, method: :get, class: "btn btn-primary btn-lg", style: "background-color: #00838f;" %>
+  <%= link_to 'Back', profiles_path, method: :get, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>
 <% end %>
+<br><br><br><br>
