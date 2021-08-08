@@ -40,12 +40,13 @@
               <p><%= @artefact.price %></p>
             <hr class="my-4">
             <p class="lead">
-                <% if current_user.profile.loaner.id != @artefact.loaner.id %>
-                <button data-stripe='payment' class="btn btn-primary btn-lg" style= "background-color: #00838f;">Loan</button>
+                <% if @artefact.loan_order != nil %>
+                    <p>This item is already on loan</p>
+                <% elsif current_user.profile.loaner.id != @artefact.loaner.id %>
+                    <button data-stripe='payment' class="btn btn-primary btn-lg" style= "background-color: #00838f;">Loan</button>
                 <% else %>
-                <p>This item is in your collection</p>
+                    <p>This item is in your collection</p>      
                 <% end %>
-
             </p>
         </div>
         <div>
@@ -57,9 +58,13 @@
 </div>
 
 <%# options for the user to edit/delete if this artefact belongs to their profile otherwise other users have the option to go back to the index of artefacts%>
-<% if current_user.profile.loaner.id == @artefact.loaner.id %>
+<% if current_user.profile.loaner.id == @artefact.loaner.id && @artefact.loan_order == nil %>
   <%= link_to 'Update', edit_artefact_path(@artefact), class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %> |
   <%= link_to 'Remove', @artefact, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %> |
+  <%= link_to 'Back', artefacts_path, method: :get, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>
+<% elsif current_user.profile.loaner.id == @artefact.loaner.id %>
+  <button type="button" class="btn btn-secondary btn-sm" disabled>Update</button>
+  <button type="button" class="btn btn-secondary btn-sm" disabled>Remove</button>
   <%= link_to 'Back', artefacts_path, method: :get, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>
 <% else %>
   <%= link_to 'Back', artefacts_path, method: :get, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>
