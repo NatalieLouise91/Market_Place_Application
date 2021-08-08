@@ -38,11 +38,12 @@
                 <% if artefact.picture_attachment == nil %>
                   <%= link_to image_tag("default-image.png", class: "default-image"), artefact %>
                 <% else %>
-                  <%= link_to image_tag(artefact.picture, class: "artefact-picture"), artefact %> 
+                  <%= link_to image_tag(artefact.picture, class: "profile-artefact-pictures"), artefact %> 
                 <% end %>
           <% end %>
         </div>
     </div>
+    
 
 <%# second row %>
 
