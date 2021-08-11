@@ -23,11 +23,11 @@
           <td><%= profile.location.location %></td>
           <td><%= profile.loaner.name %></td>
           <% if current_user == profile.user %>
-            <td><%= link_to 'Show', profile, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %></td>
-            <td><%= link_to 'Update', edit_profile_path(profile), class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %></td>
-            <td><%= link_to 'Delete', profile, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %></td>
+            <td><%= link_to 'Visit', profile, class: "btn btn-info btn-sm" %></td>
+            <td><%= link_to 'Update', edit_profile_path(profile), class: "btn btn-info btn-sm" %></td>
+            <td><%= link_to 'Delete', profile, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-info btn-sm" %></td>
           <% else %>
-            <td><%= link_to 'Visit', profile, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %></td>
+            <td><%= link_to 'Visit', profile, class: "btn btn-info btn-sm" %></td>
           <% end %>
         </tr>
       <% end %>
@@ -35,6 +35,6 @@
   </table>
 
 <% if current_user.profile == nil %>
-  <%= link_to 'New Profile', new_profile_path, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>
+  <%= link_to 'New Profile', new_profile_path, class: "btn btn-info btn-sm" %>
 <% end %>
 <br><br><br><br>

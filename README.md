@@ -47,7 +47,7 @@ This functionality enables the user to delete existing listings. A delete functi
 
 ### Loaning Objects
 
-This functionality gives users the ability to loan objects that are available from other museums. It operates similar to a sale whereby once the user selects loan item they are required to pay for the loan period.  Each object has a loan price, which varies according to the loan timeframe (3-month loan, 4-month loan, 5-month loan and 6-month loan). The loan price does not cover any additional costs such as security, condition reporting, and environmental controls that are billed to the borrower for the period of the loan. 
+This functionality gives users the ability to loan objects that are available from other museums. It operates similar to a sale whereby once the user selects loan item they are required to pay for the loan period. The loan price does not cover any additional costs such as security, condition reporting, and environmental controls that are billed to the borrower for the period of the loan. 
 
 ## Targeted Audience
 
@@ -59,9 +59,35 @@ Registrars play a pivotal role in ensuring that all museum items are accounted f
 
 Directors act as a duty manager of a museum and ensure that all activities within the museum are running smoothly, which includes organising exhibitions, care for collection, and building relationships with other museums. The MuseExchange platform creates an environment in which museums can be a part of a greater network that encourages directors to reach out and build relationships with museums that they may not have worked with before.  
 
-## Link to the deployed application
+## Tech Stack
+
+- Program Languages
+    - HTML5 - Website Markup
+    - CSS3 - Website Styling
+    - Bootstrap - Website Styling
+    - Simple Form - Form Design
+    - JavaScript - Website Functionality
+    - Ruby - Website Functionality - Backend development
+- Ruby on Rails
+    - Server side web application framework
+- PostgreSQL
+    - Relational database system
+- Heroku
+    - Cloud application platform for the deployment of MuseExchange
+- Amazon S3
+    - Object based secure cloud storage
+
+## Wireframes 
+
+
+
+## Link to the Deployed Application
+
+https://museexchange.herokuapp.com/
 
 ## Link to GitHub Repository
+
+https://github.com/NatalieLouise91/Market_Place_Application
 
 ## User Stories
 
