@@ -1,9 +1,13 @@
+<%# bootstrap jumbotron for main heading %>
+
 <div class="jumbotron jumbotron-fluid" style = "background-color: #e0e0e0;" >
   <div class="container">
     <h1 class="display-4" style = "text-align: center;">MuseExchange</h1>
     <p class="lead"></p>
   </div>
 </div>
+
+<%# bootstrap jumbotron for main content. Button to link to artefacts path %>
 
 <div class="jumbotron" style = "background-color: #e0e0e0;">
     <div class="row">
@@ -16,6 +20,7 @@
                 <%= link_to "Enter Now", artefacts_path, method: :get, class: "btn btn-info btn-lg" %>
             </p>
         </div>
+<%# image for main landing page, sourced from the Rijksmuseum %>
 
         <div class="col-md-6">
             <%= image_tag "girl", class: "home-image" %>
