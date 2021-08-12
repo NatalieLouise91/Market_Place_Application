@@ -3,59 +3,13 @@ class LoanOrdersController < ApplicationController
 
   # ^^^ before action callback to set a loan order ^^^
 
-  # Method to show all loan orders on an index page
+  # index to show all loan orders and preloading loaner, borrower and artefact entities
   def index
-    @loan_orders = LoanOrder.all
+    @loan_orders = LoanOrder.all.preload(:loaner, :borrower, :artefact)
   end
 
-  # Method to show individual loan order 
+  # show individual loan order 
   def show
-  end
-
-  # Method to initiate a new loan order
-  def new
-    @loan_order = LoanOrder.new
-  end
-
-  # GET /loan_orders/1/edit
-  def edit
-  end
-
-  # Method to create a new loan order with loan order params obtained through stripe session
-  def create
-    @loan_order = LoanOrder.new(loan_order_params)
-
-    respond_to do |format|
-      if @loan_order.save
-        format.html { redirect_to @loan_order, notice: "Loan order was successfully created." }
-        format.json { render :show, status: :created, location: @loan_order }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @loan_order.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /loan_orders/1 or /loan_orders/1.json
-  def update
-    respond_to do |format|
-      if @loan_order.update(loan_order_params)
-        format.html { redirect_to @loan_order, notice: "Loan order was successfully updated." }
-        format.json { render :show, status: :ok, location: @loan_order }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @loan_order.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /loan_orders/1 or /loan_orders/1.json
-  def destroy
-    @loan_order.destroy
-    respond_to do |format|
-      format.html { redirect_to loan_orders_url, notice: "Loan order was successfully destroyed." }
-      format.json { head :no_content }
-    end
   end
 
   private

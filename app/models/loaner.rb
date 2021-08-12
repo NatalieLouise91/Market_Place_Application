@@ -10,6 +10,7 @@ class Loaner < ApplicationRecord
   # belongs to the profile entity
   # has many association with loan orders.
   # before create and before update method to remove whitespace from profile form
+  # validation of required params to ensure these params are filled out in forms
 
   private
 

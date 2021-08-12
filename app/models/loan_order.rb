@@ -3,6 +3,5 @@ class LoanOrder < ApplicationRecord
   belongs_to :borrower
   belongs_to :artefact
 
-  # loan order has belong to association with a borrower and a loaner entities
-  # loan order has many artefacts associated
+  # loan order has belong to association with a borrower, loaner, and artefact entities
 end

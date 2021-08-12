@@ -6,6 +6,7 @@ class Location < ApplicationRecord
 
   # belongs to assocation with profile, location is dependent on profile and will delete or update accordingly. 
   # before create and before update callbacks to remove whitespace
+  # validation of required params to ensure these params are filled out in forms
 
   private
 

@@ -1,10 +1,17 @@
+<%# jumbotron heading %>
+
 <div class="jumbotron jumbotron-fluid" style = "background-color: #e0e0e0;" >
   <div class="container">
     <h1 class="display-4" style="text-align: center;">Create a Profile</h1>
   </div>
 </div>
 
+<%#  rendering the form for creating a new profile %>
+
 <%= render 'form', profile: @profile %>
 <br>
+
+<%# button to go back to profiles route %>
+
 <%= link_to 'Back', profiles_path, method: :get, class: "btn btn-primary btn-sm", style: "background-color: #00838f;" %>
 <br><br><br><br>

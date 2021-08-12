@@ -16,6 +16,7 @@ class Profile < ApplicationRecord
   # profile has associations with the location, borrower and loaner entities, all are dependent the profile entity and will delete and update accordingly.
   # profile has nested forms for location, loaner, and borrowers
   # before create and before update callbacks executes the remove whitespace method
+  # validation of required params to ensure these params are filled out in forms & that the institution_name is unique
 
   private
 

@@ -8,6 +8,7 @@ class Category < ApplicationRecord
   # has many relation with artefacts 
   # category is dependent on artefacts and will be deleted when artefact is deleted and updated when artefact is updated.
   # before create and before update callback for white space method
+  # validation of required params to ensure these params are filled out in forms
 
   private
 

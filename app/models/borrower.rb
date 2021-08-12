@@ -5,7 +5,12 @@ class Borrower < ApplicationRecord
   before_update :remove_whitespace
   validates :name, :phone, presence: true
 
+  # before create and before update callbacks used on the new profiles forms and edit profiles form
+  # validation of required params to ensure these params are filled out in forms
+
   private
+
+  # method to remove whitespace from user input
 
   def remove_whitespace
     self.name = self.name.strip

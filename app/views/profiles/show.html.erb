@@ -93,6 +93,7 @@
     </div>
 </div>
 
+<%# logic to ensure only users can edit or delete their own profile  %>
 
 <% if current_user == @profile.user %>
   <%= link_to 'Edit', edit_profile_path(@profile), class: "btn btn-info btn-sm" %>

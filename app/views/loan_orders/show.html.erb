@@ -1,12 +1,21 @@
 <p id="notice"><%= notice %></p>
 
+<%#  Jumbotron for heading %>
+
 <div class="jumbotron jumbotron-fluid" style = "background-color: #e0e0e0;" >
   <div class="container">
     <h1 class="display-4" style = "text-align: center;"> Loan Record <%= @loan_order.id %></h1>
   </div>
 </div>
+
+<%# Jumbotron for main content %>
+
     <div class="jumbotron" style = "background-color: #e0e0e0;">
+
+    <%# first row  %>
     <div class="row">
+
+     <%# first column Artefact information from the Loan Order, Artefact and Category entities %>
 
         <div class="col-md-6">
             <h3 class="display-5">Artefact Information</h3>
@@ -22,6 +31,8 @@
 
         <div class="col-md-6">
 
+        <%# second column Museum information from the loan order & profile entities %>
+
             <h3 class="display-5">Museum Information</h3>
             <hr class="my-4">
             <h5>Loaning Institution Contact:</h5>
@@ -34,6 +45,7 @@
               <p><%= @loan_order.borrower.phone %>,</p>
               <p><%= @loan_order.borrower.profile.institution_name %></p>
           
+          <%# Account information from the loan order & artefact entity %>
           
             <h3 class="display-5">Account Information</h3>
             <hr class="my-4">

@@ -1,18 +1,31 @@
 <nav>
   <ul class="nav justify-content-end" style="background-color: #2E2E2E; width: 100%;">
+
       <%= link_to "Home", root_path, method: :get, class: "nav-link" %>
+      
+      <%# logic for new users to create a profile before having access to account, artefact, and loan links %>
     <% if user_signed_in? && current_user.profile == nil %>
+
       <%= link_to "Profiles", profiles_path, method: :get, class: "nav-link" %>
       <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+
+      <%# logic for users that are signed in and have a profile %>
+
     <% elsif user_signed_in? && current_user.profile != nil %>
+
       <%= link_to "Account", current_user.profile, method: :get, class: "nav-link" %>
       <%= link_to "Profiles", profiles_path, method: :get, class: "nav-link" %>
       <%= link_to "Artefacts", artefacts_path, method: :get, class: "nav-link" %>
       <%= link_to "Loans", loan_orders_path, method: :get, class: "nav-link" %>
       <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+
     <% else %>
+
+    <%# logic for visiters to the sign who are either not logged in or do not have a user account %>
+
       <%= link_to "Log in", new_user_session_path, method: :get, class: "nav-link" %>
       <%= link_to "Create Account", new_user_registration_path, method: :get, class: "nav-link" %>
+
     <% end %>
   </ul>
 </nav>

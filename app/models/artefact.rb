@@ -10,6 +10,7 @@ class Artefact < ApplicationRecord
 
   # an artefact belongs to a loaner and a category. Each artefact belongs to a loan order. 
   # before create and before update callbacks used on the new artefact forms and edit artefact form
+  # validation of required params to ensure these params are filled out in forms
 
   private
 

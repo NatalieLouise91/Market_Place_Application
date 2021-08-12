@@ -4,7 +4,8 @@ class ArtefactsController < ApplicationController
 
   # ^^^ before action callback to set the artefact and authenticate the user to allow stripe payment process ^^^
 
-  # Show all artefacts in an index page 
+  # Show all artefacts in an index page. Displaying in ascending order of artefact name. 
+  # Preloading loaner entity for better processing time
   def index
     @artefacts = Artefact.order(name: :asc).preload(:loaner)
   end
